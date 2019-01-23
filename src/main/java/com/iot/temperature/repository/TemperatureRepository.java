@@ -12,4 +12,4 @@ public interface TemperatureRepository extends CrudRepository<Temperature, Long>
  @Query(value = "SELECT * FROM iot.temperature ORDER BY id DESC LIMIT 86400", nativeQuery = true)
 	List<Temperature> findLastTemperatures() ;  
 }
- 
+  
