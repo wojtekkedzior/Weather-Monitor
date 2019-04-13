@@ -34,9 +34,9 @@ public class TemperatureController {
 	@PostMapping("/temperature/{temperature}/humidity/{humidity}/pressure/{pressure}")
 	public ModelAndView createPayment(@PathVariable Optional<Float> temperature, @PathVariable Optional<Float> humidity, @PathVariable Optional<Float> pressure) {
 
-//		 log.info("temperature: " + temperature);
-//		 log.info("humidity: " + humidity);
-//		 log.info("pressure: " + pressure);
+		 log.info("temperature: " + temperature);
+		 log.info("humidity: " + humidity);
+		 log.info("pressure: " + pressure);
 
 		Temperature temp = new Temperature();
 		temp.setTemperature(temperature.get());
