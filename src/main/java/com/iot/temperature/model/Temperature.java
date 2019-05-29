@@ -1,5 +1,6 @@
 package com.iot.temperature.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,7 +15,12 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Temperature {
+public class Temperature implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4198943515224478533L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
