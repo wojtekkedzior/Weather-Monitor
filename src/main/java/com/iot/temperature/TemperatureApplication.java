@@ -2,6 +2,7 @@ package com.iot.temperature;
 
 import java.util.List;
 
+import javax.annotation.PreDestroy;
 import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.configuration.Factory;
@@ -9,6 +10,7 @@ import javax.cache.configuration.FactoryBuilder;
 import javax.cache.configuration.MutableCacheEntryListenerConfiguration;
 import javax.cache.configuration.MutableConfiguration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -31,7 +33,10 @@ public class TemperatureApplication extends org.springframework.boot.web.servlet
 	 public Factory<SimpleCacheEntryListener> getListenerFactory() {
 		 return FactoryBuilder.factoryOf(new SimpleCacheEntryListener());
 	 }
-
+	 
+//	 @Autowired
+//	 private CacheManager cacheManager;
+	 
 	@Bean
 	public Cache<Integer, List<Temperature>> getCache(CacheManager cacheManager) {
 		MutableConfiguration<Integer, List<Temperature>> config = new MutableConfiguration<>();
@@ -43,7 +48,14 @@ public class TemperatureApplication extends org.springframework.boot.web.servlet
 				new MutableCacheEntryListenerConfiguration<Integer, List<Temperature>>(getListenerFactory(), null, false, true);
 		
 		cache.registerCacheEntryListener(listenerConfiguration);
+		cacheManager.close();
 		return cache;
 	}
+	
+//	   @PreDestroy
+//	    public void onDestroy() throws Exception {
+//	        System.out.println("Spring Container is destroyed!");
+//	        cacheManager.close();
+//	    }
 
 }
