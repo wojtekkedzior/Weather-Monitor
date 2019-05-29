@@ -17,9 +17,6 @@ import lombok.Data;
 @Data
 public class Temperature implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4198943515224478533L;
 
 	@Id
