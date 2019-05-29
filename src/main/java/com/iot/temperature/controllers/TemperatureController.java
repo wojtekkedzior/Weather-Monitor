@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.iot.temperature.model.Temperature;
 import com.iot.temperature.repository.TemperatureRepository;
+import com.iot.temperature.service.TemperatureService;
 
 @RestController
 public class TemperatureController {
@@ -30,6 +29,9 @@ public class TemperatureController {
 
 	@Autowired
 	private TemperatureRepository temperatureRepo;
+	
+	@Autowired
+	private TemperatureService service;
 
 	@PostMapping("/temperature/{temperature}/humidity/{humidity}/pressure/{pressure}")
 	public ModelAndView createPayment(@PathVariable Optional<Float> temperature, @PathVariable Optional<Float> humidity, @PathVariable Optional<Float> pressure) {
@@ -48,13 +50,11 @@ public class TemperatureController {
 		return new ModelAndView("redirect:/checkoutReservation/");
 	}
 
-	@GetMapping(path = "/temperature", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> sayHello() {
-
+	@GetMapping(path = "/temperature/{duration}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> getTemperatureData(@PathVariable Integer duration) {
 		List<Map<String, Object>> allValues = new ArrayList<>();
-		Iterable<Temperature> findAll = temperatureRepo.findLastTemperatures();
-		List<Temperature> collect = StreamSupport.stream(findAll.spliterator(), false).collect(Collectors.toList());
-
+		List<Temperature> collect = service.getTemperatures(duration);
+		
 		for (Temperature temperature : collect) {
 			HashMap<String, Object> map = new HashMap<>();
 
@@ -65,6 +65,9 @@ public class TemperatureController {
 			allValues.add(map);
 		}
 
+		System.err.println(allValues.size());
 		return new ResponseEntity<Object>(allValues, HttpStatus.OK);
 	}
+	
+	
 }
