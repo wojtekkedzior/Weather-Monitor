@@ -12,9 +12,11 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Temperature implements Serializable {
 
 	private static final long serialVersionUID = 4198943515224478533L;
@@ -30,8 +32,4 @@ public class Temperature implements Serializable {
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timestamp; 
-	
-	public Temperature() {}
-	
-
 }

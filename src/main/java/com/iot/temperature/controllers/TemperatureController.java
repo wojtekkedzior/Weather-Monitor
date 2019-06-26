@@ -36,9 +36,9 @@ public class TemperatureController {
 	@PostMapping("/temperature/{temperature}/humidity/{humidity}/pressure/{pressure}")
 	public ModelAndView createPayment(@PathVariable Optional<Float> temperature, @PathVariable Optional<Float> humidity, @PathVariable Optional<Float> pressure) {
 
-		 log.info("temperature: " + temperature);
-		 log.info("humidity: " + humidity);
-		 log.info("pressure: " + pressure);
+//		 log.info("temperature: " + temperature);
+//		 log.info("humidity: " + humidity);
+//		 log.info("pressure: " + pressure);
 
 		Temperature temp = new Temperature();
 		temp.setTemperature(temperature.get());
@@ -52,11 +52,11 @@ public class TemperatureController {
 
 	@GetMapping(path = "/temperature/{duration}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> getTemperatureData(@PathVariable Integer duration) {
-		List<Map<String, Object>> allValues = new ArrayList<>();
+		List<Map<String, Number>> allValues = new ArrayList<>();
 		List<Temperature> collect = service.getTemperatures(duration);
 		
 		for (Temperature temperature : collect) {
-			HashMap<String, Object> map = new HashMap<>();
+			HashMap<String, Number> map = new HashMap<>();
 
 			map.put("temperature", temperature.getTemperature());
 			map.put("time", temperature.getTimestamp().getTime());
@@ -65,9 +65,6 @@ public class TemperatureController {
 			allValues.add(map);
 		}
 
-		System.err.println(allValues.size());
 		return new ResponseEntity<Object>(allValues, HttpStatus.OK);
 	}
-	
-	
 }
