@@ -124,15 +124,15 @@ public class TemperatureController {
 			Thread.sleep(100);
 		}
 
-		today = LocalDateTime.now().withNano(0).withSecond(0).withMinute(0).withHour(0);
+		today = LocalDateTime.now().plus(1, ChronoUnit.DAYS).minus(1, ChronoUnit.HOURS).withNano(0).withSecond(0).withMinute(0);
 
-		for (int k = 0; k < 7; k++) {
+		for (int k = 0; k < 30; k++) {
 			for(int i = 0; i < 6; i++) {
 				List<Number> averageForFourHours = new ArrayList<>();
 
-				for(int j = 0; j < 4; j++) { //6 hours
+				for(int j = 0; j < 4; j++) {
 					averageForFourHours.add(hourlyAverages.getOrDefault(today, 0));
-					today = today.plus(1, ChronoUnit.HOURS);
+					today = today.minus(1, ChronoUnit.HOURS);
 				}
 
 //				System.out.println(today.minus(4, ChronoUnit.HOURS) + " " + averageForFourHours.stream().mapToDouble(n -> n.doubleValue()).average());
@@ -144,7 +144,7 @@ public class TemperatureController {
 
 			}
 
-			today = today.minus(2, ChronoUnit.DAYS).withHour(0);
+			today = today.minus(1, ChronoUnit.DAYS).withHour(0);
 		}
 		return new ResponseEntity<Object>(allValues, HttpStatus.OK);
 	}
