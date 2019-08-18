@@ -10,7 +10,7 @@
 		$
 				.ajax({
 					type : 'GET',
-					url : 'http://192.168.1.24:8080/weather-monitor/temperature/'+duration,
+					url : 'http://192.168.1.17:8080/weather-monitor/temperature/'+duration,
 					data : {},
 					dataType : 'json',
 					success : function(data) {
@@ -138,6 +138,9 @@
 						chart.render();
 					}
 				});
+
+
+
 
 /* 		setInterval(function() {
 			updateChart()

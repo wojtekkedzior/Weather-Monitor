@@ -1,18 +1,12 @@
 package com.iot.temperature.model;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -30,6 +24,6 @@ public class Temperature implements Serializable {
 	private Float pressure;
 	
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date timestamp; 
+//	@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime timestamp;
 }
