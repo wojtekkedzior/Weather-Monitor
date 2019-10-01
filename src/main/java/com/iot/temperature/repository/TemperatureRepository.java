@@ -1,6 +1,7 @@
 package com.iot.temperature.repository;
 
 import com.iot.temperature.model.Temperature;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,4 +17,13 @@ public interface TemperatureRepository extends CrudRepository<Temperature, Long>
     List<Temperature> findLastTemperaturesByTimestamp(LocalDateTime date);
 
     List<Temperature> findTemperaturesByTimestampBetween(LocalDateTime start, LocalDateTime end);
+
+
+//    SELECT * FROM mytable ORDER BY id DESC LIMIT 1
+    //findTopByOrderByAgeDesc
+
+    Temperature findTopByOrderByIdDesc();
+
+//    User findTopByOrderByAgeDesc();
+
 }

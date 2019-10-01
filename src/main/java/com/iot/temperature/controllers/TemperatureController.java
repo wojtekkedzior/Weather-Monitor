@@ -2,6 +2,7 @@ package com.iot.temperature.controllers;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAmount;
 import java.time.temporal.TemporalUnit;
@@ -93,7 +94,7 @@ public class TemperatureController {
 				HashMap<String, Number> map = new HashMap<>();
 
 				map.put("temperature", temperature.getTemperature());
-				map.put("time", Date.from( temperature.getTimestamp().atZone( ZoneId.systemDefault()).toInstant()).getTime());
+				map.put("time", Date.from( temperature.getTimestamp().atZone(ZoneId.systemDefault()).toInstant()).getTime());
 				map.put("humidity", temperature.getHumidity());
 				map.put("pressure", temperature.getPressure());
 				allValues.add(map);
@@ -101,6 +102,16 @@ public class TemperatureController {
 		}
 
 		return new ResponseEntity<Object>(allValues, HttpStatus.OK);
+	}
+
+	@GetMapping(path = "/temperature/getLatest", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> getLatestRecord() {
+		Temperature topByTimestampDesc = temperatureRepo.findTopByOrderByIdDesc();
+
+		System.out.println(topByTimestampDesc);
+		System.out.println(topByTimestampDesc.getTimestamp().format(DateTimeFormatter.ISO_DATE_TIME));
+
+		return new ResponseEntity<Object>(topByTimestampDesc, HttpStatus.OK);
 	}
 
 	@GetMapping(path = "/temperature/runningAverage", produces = MediaType.APPLICATION_JSON_VALUE)

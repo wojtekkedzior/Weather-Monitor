@@ -17,7 +17,7 @@ public class Temperature implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	private Float temperature;
 	private Float humidity;
