@@ -31,7 +31,7 @@ public class TemperatureService {
         return StreamSupport.stream(findAll.spliterator(), false).collect(Collectors.toList());
     }
 
-    //    @Cacheable("duration")
+//        @Cacheable("duration")
     public List<Temperature> getTemperatures(LocalDateTime start, LocalDateTime end) {
         Iterable<Temperature> findAll = temperatureRepo.findTemperaturesByTimestampBetween(start, end);
         return StreamSupport.stream(findAll.spliterator(), true).collect(Collectors.toList());

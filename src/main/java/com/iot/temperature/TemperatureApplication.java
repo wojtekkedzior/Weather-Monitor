@@ -1,6 +1,8 @@
 package com.iot.temperature;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 import javax.annotation.PreDestroy;
 import javax.cache.Cache;
@@ -33,6 +35,11 @@ public class TemperatureApplication extends org.springframework.boot.web.servlet
 	 public Factory<SimpleCacheEntryListener> getListenerFactory() {
 		 return FactoryBuilder.factoryOf(new SimpleCacheEntryListener());
 	 }
+
+	@Bean
+	public Factory<SimpleHourlyAverageCacheEntryListener> getHourlyAverageListenerFactory() {
+		return FactoryBuilder.factoryOf(new SimpleHourlyAverageCacheEntryListener());
+	}
 	 
 	@Bean
 	public Cache<Integer, List<Temperature>> getCache(CacheManager cacheManager) {
@@ -44,6 +51,20 @@ public class TemperatureApplication extends org.springframework.boot.web.servlet
 		MutableCacheEntryListenerConfiguration<Integer, List<Temperature>> listenerConfiguration = 
 				new MutableCacheEntryListenerConfiguration<Integer, List<Temperature>>(getListenerFactory(), null, false, true);
 		
+		cache.registerCacheEntryListener(listenerConfiguration);
+		return cache;
+	}
+
+	@Bean
+	public Cache<Integer, ConcurrentSkipListMap<LocalDateTime, Number>> getHourlyCache(CacheManager cacheManager) {
+		MutableConfiguration<Integer, ConcurrentSkipListMap<LocalDateTime, Number>> config = new MutableConfiguration<>();
+		config.setExpiryPolicyFactory(new FactoryBuilder.SingletonFactory<>(new TemperatureExpiryPolicy()));
+
+		Cache<Integer, ConcurrentSkipListMap<LocalDateTime, Number> > cache = cacheManager.createCache("hourlyAverage", config);
+
+		MutableCacheEntryListenerConfiguration<Integer, ConcurrentSkipListMap<LocalDateTime, Number>> listenerConfiguration =
+				new MutableCacheEntryListenerConfiguration<Integer, ConcurrentSkipListMap<LocalDateTime, Number>>(getHourlyAverageListenerFactory(), null, false, true);
+
 		cache.registerCacheEntryListener(listenerConfiguration);
 		return cache;
 	}

@@ -1,6 +1,7 @@
 package com.iot.temperature;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.cache.event.CacheEntryCreatedListener;
@@ -23,6 +24,9 @@ public class SimpleCacheEntryListener implements CacheEntryCreatedListener<Integ
 
 	@Override
 	public void onUpdated(Iterable<CacheEntryEvent<? extends Integer, ? extends List<Temperature>>> events) throws CacheEntryListenerException {
+		Iterator<CacheEntryEvent<? extends Integer, ? extends List<Temperature>>> iterator = events.iterator();
+//			iterator.forEachRemaining(cacheEntryEvent -> () -> cacheEntryEvent.getSource());
+
 		log.info("update cache" );
 	}
 	@Override
