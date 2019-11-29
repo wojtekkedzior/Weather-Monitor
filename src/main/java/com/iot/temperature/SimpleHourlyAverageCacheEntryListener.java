@@ -1,6 +1,5 @@
 package com.iot.temperature;
 
-import com.iot.temperature.model.Temperature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
