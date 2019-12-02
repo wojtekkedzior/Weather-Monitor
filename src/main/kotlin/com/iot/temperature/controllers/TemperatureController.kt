@@ -35,7 +35,7 @@ class TemperatureController {
     @Autowired
     var cache: Cache<Int, ConcurrentSkipListMap<LocalDateTime, Number>>? = null
 
-    val latestRecord: ResponseEntity<Any>
+    val latestRecord: ResponseEntity<Temperature?>
         @GetMapping(path = ["/temperature/getLatest"], produces = [MediaType.APPLICATION_JSON_VALUE])
         get() {
             val topByTimestampDesc = temperatureRepo!!.findTopByOrderByIdDesc()
@@ -108,7 +108,7 @@ class TemperatureController {
                 val collect = service!!.getTemperaturesForDay(now)
 
                 //TODO this needs to be broken down per hour
-                val average = collect.stream().mapToDouble { c -> c.temperature!!.toDouble() }.average()
+                val average = collect.stream().mapToDouble { c -> c!!.temperature!!.toDouble() }.average()
 
                 if (average.isEmpty) {
                     allAverages[now] = 0.0
@@ -122,10 +122,12 @@ class TemperatureController {
             for (temperature in service!!.getTemperatures(duration!!)) {
                 val map = HashMap<String, Number>()
 
-                map["temperature"] = temperature.temperature!!.toDouble()
-                map["time"] = Date.from(temperature.timestamp!!.atZone(ZoneId.systemDefault()).toInstant()).time
-                map["humidity"] = temperature.humidity!!.toDouble()
-                map["pressure"] = temperature.pressure!!.toDouble()
+                if (temperature != null) {
+                    map["temperature"] = temperature.temperature!!.toDouble()
+                    map["time"] = Date.from(temperature.timestamp!!.atZone(ZoneId.systemDefault()).toInstant()).time
+                    map["humidity"] = temperature.humidity!!.toDouble()
+                    map["pressure"] = temperature.pressure!!.toDouble()
+                }
                 allValues.add(map)
             }
         }
@@ -136,7 +138,7 @@ class TemperatureController {
     private fun doStuff(today: LocalDateTime, hourlyAverages: ConcurrentSkipListMap<LocalDateTime, Number>) {
         val average = service!!.getTemperatures(today, today.plus(1, ChronoUnit.HOURS))
                 .parallelStream()
-                .mapToDouble { c -> c.temperature!!.toDouble() }
+                .mapToDouble { c -> c!!.temperature!!.toDouble() }
                 .average()
 
         hourlyAverages[today] = average.orElseGet { 0.0 }
