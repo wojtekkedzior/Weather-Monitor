@@ -122,12 +122,11 @@ class TemperatureController {
             for (temperature in service!!.getTemperatures(duration!!)) {
                 val map = HashMap<String, Number>()
 
-                if (temperature != null) {
-                    map["temperature"] = temperature.temperature!!.toDouble()
-                    map["time"] = Date.from(temperature.timestamp!!.atZone(ZoneId.systemDefault()).toInstant()).time
-                    map["humidity"] = temperature.humidity!!.toDouble()
-                    map["pressure"] = temperature.pressure!!.toDouble()
-                }
+                map["temperature"] = temperature.temperature!!.toDouble()
+                map["time"] = Date.from(temperature.timestamp!!.atZone(ZoneId.systemDefault()).toInstant()).time
+                map["humidity"] = temperature.humidity!!.toDouble()
+                map["pressure"] = temperature.pressure!!.toDouble()
+
                 allValues.add(map)
             }
         }

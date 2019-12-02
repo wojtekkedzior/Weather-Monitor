@@ -11,7 +11,5 @@ interface TemperatureRepository : CrudRepository<Temperature?, Long?> {
 
     fun findLastTemperaturesByTimestamp(date: LocalDateTime?): List<Temperature?>?
     fun findTemperaturesByTimestampBetween(start: LocalDateTime?, end: LocalDateTime?): List<Temperature?>?
-    //    SELECT * FROM mytable ORDER BY id DESC LIMIT 1
-//findTopByOrderByAgeDesc
     fun findTopByOrderByIdDesc(): Temperature? //    User findTopByOrderByAgeDesc();
 }

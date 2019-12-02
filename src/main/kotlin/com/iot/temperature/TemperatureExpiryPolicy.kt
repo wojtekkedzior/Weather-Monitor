@@ -1,23 +1,18 @@
-package com.iot.temperature;
+package com.iot.temperature
 
-import javax.cache.expiry.Duration;
-import javax.cache.expiry.ExpiryPolicy;
+import javax.cache.expiry.Duration
+import javax.cache.expiry.ExpiryPolicy
 
-public class TemperatureExpiryPolicy implements ExpiryPolicy{
+class TemperatureExpiryPolicy : ExpiryPolicy {
+    override fun getExpiryForCreation(): Duration {
+        return Duration.TEN_MINUTES
+    }
 
-	@Override
-	public Duration getExpiryForCreation() {
-		return Duration.TEN_MINUTES;
-	}
+    override fun getExpiryForAccess(): Duration {
+        return Duration.TEN_MINUTES
+    }
 
-	@Override
-	public Duration getExpiryForAccess() {
-		return Duration.TEN_MINUTES;
-	}
-
-	@Override
-	public Duration getExpiryForUpdate() {
-		return Duration.TEN_MINUTES;
-	}
-
+    override fun getExpiryForUpdate(): Duration {
+        return Duration.TEN_MINUTES
+    }
 }

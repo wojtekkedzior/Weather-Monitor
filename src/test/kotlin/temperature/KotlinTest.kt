@@ -1,4 +1,4 @@
-package com.iot.temperature
+package temperature
 
 fun main() {
     fun printDouble(d: Double) {
