@@ -134,12 +134,13 @@ class TemperatureController {
     }
 
     private fun doStuff(today: LocalDateTime, hourlyAverages: ConcurrentSkipListMap<LocalDateTime, Number>) {
+        log.info("Worker Thread started: " + Thread.currentThread().name)
         val average = service!!.getTemperatures(today, today.plus(1, ChronoUnit.HOURS))
                 .parallelStream()
                 .mapToDouble { c -> c!!.temperature!!.toDouble() }
                 .average()
 
         hourlyAverages[today] = average.orElseGet { 0.0 }
-//        log.info("Looking for: " + today + " and : " + today.plus(1, ChronoUnit.HOURS) + "  - Average: " + if (average.isEmpty) 0 else average.asDouble)
+        log.info("Worker Thread finished: " + Thread.currentThread().name)
     }
 }
