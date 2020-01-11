@@ -21,7 +21,7 @@
         <sonar.host.url>http://192.168.1.99:9000</sonar.host.url>
         <!--<sonar.exclusions>**/*ApplicationStartup.java, **/repository/**, **/model/**</sonar.exclusions>-->
 <!--        <start-class>com.iot.temperature.TemperatureApplication</start-class>-->
-<!--        <start-class>temperature.TemperatureApplication</start-class>-->
+        <start-class>temperature.TemperatureApplication</start-class>
     </properties>
 
     <dependencies>
@@ -101,23 +101,30 @@
     <build>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
 
-                <configuration>
-                    <mainClass>temperature.TemperatureApplication</mainClass>
-                    <layout>WAR</layout>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
+<!--                <configuration>-->
+<!--                    <includes>-->
+<!--                        <include>src/main/java/**/*.java</include>-->
+<!--                        <include>src/main/kotlin/**/*.tk</include>-->
+<!--                    </includes>-->
+<!--                </configuration>-->
 
-            </plugin>
+<!--                <configuration>-->
+<!--                    <mainClass>temperature.TemperatureApplication</mainClass>-->
+<!--                    <layout>WAR</layout>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
@@ -153,6 +160,24 @@
                             </sourceDirs>
                         </configuration>
                     </execution>
+
+
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>none</phase>
+                    </execution>
+                    <!-- Replacing default-testCompile as it is treated specially by maven -->
+                    <execution>
+                        <id>default-testCompile</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>java-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
 <!--                    <execution>-->
 <!--                        <configuration>-->
 <!--                            <mainClass>temperature.TemperatureApplication</mainClass>-->
@@ -182,20 +207,20 @@
                         <id>default-testCompile</id>
                         <phase>none</phase>
                     </execution>
-<!--                    <execution>-->
-<!--                        <id>java-compile</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>compile</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>java-test-compile</id>-->
-<!--                        <phase>test-compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>testCompile</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
+                    <execution>
+                        <id>java-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>java-test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
