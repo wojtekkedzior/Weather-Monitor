@@ -1,7 +1,7 @@
-package com.iot.temperature;
+package temperature;
 
 import com.hazelcast.core.Hazelcast;
-import com.iot.temperature.model.Temperature;
+import temperature.model.Temperature;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;

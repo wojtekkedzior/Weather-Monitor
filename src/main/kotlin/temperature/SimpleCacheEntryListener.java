@@ -1,4 +1,4 @@
-package com.iot.temperature;
+package temperature;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.iot.temperature.model.Temperature;
+import temperature.model.Temperature;
 
 @Component
 public class SimpleCacheEntryListener implements CacheEntryCreatedListener<Integer, List<Temperature>>, CacheEntryUpdatedListener<Integer, List<Temperature>>, Serializable {

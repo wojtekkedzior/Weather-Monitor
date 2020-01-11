@@ -1,4 +1,4 @@
-package com.iot.temperature.model
+package temperature.model
 
 import lombok.Data
 import java.time.LocalDateTime

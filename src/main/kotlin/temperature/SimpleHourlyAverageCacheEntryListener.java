@@ -1,4 +1,4 @@
-package com.iot.temperature;
+package temperature;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.iot.temperature
+package temperature
 
 import javax.cache.expiry.Duration
 import javax.cache.expiry.ExpiryPolicy

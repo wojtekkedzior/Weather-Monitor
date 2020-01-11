@@ -1,7 +1,7 @@
-package com.iot.temperature.service;
+package temperature.service;
 
-import com.iot.temperature.model.Temperature;
-import com.iot.temperature.repository.TemperatureRepository;
+import temperature.model.Temperature;
+import temperature.repository.TemperatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

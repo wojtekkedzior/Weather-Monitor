@@ -1,4 +1,4 @@
-package com.iot.temperature.model
+package temperature.model
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty

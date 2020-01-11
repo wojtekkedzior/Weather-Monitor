@@ -1,6 +1,6 @@
-package com.iot.temperature.repository
+package temperature.repository
 
-import com.iot.temperature.model.Temperature
+import temperature.model.Temperature
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.CrudRepository
 import java.time.LocalDateTime
