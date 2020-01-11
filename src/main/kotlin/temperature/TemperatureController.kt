@@ -84,7 +84,7 @@ class TemperatureController {
 
 
     @PostMapping("/temperature/{temperature}/humidity/{humidity}/pressure/{pressure}")
-    fun createPayment(@PathVariable temperature: Optional<Double>, @PathVariable humidity: Optional<Float>, @PathVariable pressure: Optional<Float>): ModelAndView {
+    fun postTemperatures(@PathVariable temperature: Optional<Double>, @PathVariable humidity: Optional<Float>, @PathVariable pressure: Optional<Float>): ResponseEntity<HttpStatus>  {
         val temp = Temperature()
         temp.temperature = temperature.get()
         temp.humidity = humidity.get()
@@ -92,7 +92,7 @@ class TemperatureController {
         temp.timestamp = LocalDateTime.now()
         temperatureRepo!!.save(temp)
 
-        return ModelAndView("redirect:/checkoutReservation/")
+        return ResponseEntity(HttpStatus.OK)
     }
 
     @GetMapping(path = ["/temperature/{duration}"], produces = [MediaType.APPLICATION_JSON_VALUE])
