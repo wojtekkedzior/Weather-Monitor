@@ -6,6 +6,7 @@ import com.iot.temperature.service.TemperatureService
 import org.jetbrains.annotations.NotNull
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Scope
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -36,11 +37,10 @@ class TemperatureController {
     var cache: Cache<Int, ConcurrentSkipListMap<LocalDateTime, Number>>? = null
 
     val latestRecord: ResponseEntity<Temperature?>
-        @GetMapping(path = ["/temperature/getLatest"], produces = [MediaType.APPLICATION_JSON_VALUE])
+        @GetMapping(path = ["/temperature/getLatest"])
         get() {
             val topByTimestampDesc = temperatureRepo!!.findTopByOrderByIdDesc()
-            log.info("Latest record: $topByTimestampDesc.timestamp.format(DateTimeFormatter.ISO_DATE_TIME))")
-            return ResponseEntity(topByTimestampDesc, HttpStatus.OK)
+            return ResponseEntity<Temperature?>(topByTimestampDesc, HttpStatus.OK)
         }
 
     @GetMapping(path = ["/temperature/runningAverage/{totalDays}/{hourWindow}"], produces = [MediaType.APPLICATION_JSON_VALUE])
@@ -54,7 +54,7 @@ class TemperatureController {
             val averageForFourHours = ArrayList<Number>()
 
             for (j in 1..hourWindow) {
-                averageForFourHours.add((hourlyAverages).getOrDefault(today.minusHours(i.times(hourWindow).plus(j).toLong()), 0))
+                averageForFourHours.add(hourlyAverages.getOrDefault(today.minusHours(i.times(hourWindow).plus(j).toLong()), 0))
             }
             val range = HashMap<String, Number>()
 

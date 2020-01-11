@@ -10,7 +10,7 @@
 		$
 				.ajax({
 					type : 'GET',
-					url : 'http://192.168.1.17:8080/weather-monitor/temperature/runningAverage',
+					url : 'http://192.168.1.24:8080/weather-monitor/temperature/runningAverage/60/6',
 					data : {},
 					dataType : 'json',
 					success : function(data) {
@@ -68,74 +68,6 @@
 									} ]
 								});
 						chart.render();
-
-<!--						var chart = new CanvasJS.Chart(-->
-<!--								"chartContainer2",-->
-<!--								{-->
-<!--									animationEnabled : true,-->
-<!--									title : {-->
-<!--										text : "Daily High Temperature at Different Beaches"-->
-<!--									},-->
-<!--									axisX : {-->
-<!--										//valueFormatString: "DD MMM,YY"-->
-<!--										valueFormatString : "DD MMM HH mm ss"-->
-<!--									},-->
-<!--									axisY : {-->
-<!--										title : "Humidity (in %)",-->
-<!--										includeZero : true,-->
-<!--										suffix : " °C"-->
-<!--									},-->
-<!--									legend : {-->
-<!--										cursor : "pointer",-->
-<!--										fontSize : 16,-->
-<!--										itemclick : toggleDataSeries-->
-<!--									},-->
-<!--									toolTip : {-->
-<!--										shared : true-->
-<!--									},-->
-<!--									data : [ {-->
-<!--										name : "Humidity",-->
-<!--										type : "spline",-->
-<!--										yValueFormatString : "#0.## '%'",-->
-<!--										showInLegend : true,-->
-<!--										dataPoints : humidity-->
-<!--									} ]-->
-<!--								});-->
-<!--						chart.render();-->
-
-<!--						var chart = new CanvasJS.Chart(-->
-<!--								"chartContainer3",-->
-<!--								{-->
-<!--									animationEnabled : true,-->
-<!--									title : {-->
-<!--										text : "Daily High Temperature at Different Beaches"-->
-<!--									},-->
-<!--									axisX : {-->
-<!--										//valueFormatString: "DD MMM,YY"-->
-<!--										valueFormatString : "DD MMM HH mm ss"-->
-<!--									},-->
-<!--									axisY : {-->
-<!--										title : "Pressure (in hPa)",-->
-<!--										includeZero : true,-->
-<!--										suffix : " °C"-->
-<!--									},-->
-<!--									legend : {-->
-<!--										cursor : "pointer",-->
-<!--										fontSize : 16,-->
-<!--										itemclick : toggleDataSeries-->
-<!--									},-->
-<!--									toolTip : {-->
-<!--										shared : true-->
-<!--									},-->
-<!--									data : [ {-->
-<!--										name : "Pressure",-->
-<!--										type : "spline",-->
-<!--										yValueFormatString : "#0.## hPa",-->
-<!--										showInLegend : true,-->
-<!--										dataPoints : pressure-->
-<!--									} ]-->
-<!--								});-->
-<!--						chart.render();-->
 					}
 				});
 
