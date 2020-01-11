@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import lombok.AccessLevel
 import lombok.Data
 import lombok.NoArgsConstructor
+import java.io.Serializable
 import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -15,7 +16,7 @@ import javax.validation.constraints.NotNull
 @Entity
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-class Temperature {
+class Temperature : Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
