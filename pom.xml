@@ -23,7 +23,7 @@
         <sonar.host.url>http://192.168.1.99:9000</sonar.host.url>
         <!--<sonar.exclusions>**/*ApplicationStartup.java, **/repository/**, **/model/**</sonar.exclusions>-->
 <!--        <start-class>com.iot.temperature.TemperatureApplication</start-class>-->
-        <start-class>temperature.TemperatureApplication</start-class>
+<!--        <start-class>temperature.TemperatureApplication</start-class>-->
     </properties>
 
     <dependencies>
@@ -165,11 +165,11 @@
                             </sourceDirs>
                         </configuration>
                     </execution>
-                    <execution>
-                        <configuration>
-                            <mainClass>temperature.TemperatureApplication</mainClass>
-                        </configuration>
-                    </execution>
+<!--                    <execution>-->
+<!--                        <configuration>-->
+<!--                            <mainClass>temperature.TemperatureApplication</mainClass>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
                 </executions>
             </plugin>
             <plugin>
