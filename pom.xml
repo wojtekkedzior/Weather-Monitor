@@ -19,9 +19,6 @@
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
         <sonar.host.url>http://192.168.1.99:9000</sonar.host.url>
-        <!--<sonar.exclusions>**/*ApplicationStartup.java, **/repository/**, **/model/**</sonar.exclusions>-->
-<!--        <start-class>com.iot.temperature.TemperatureApplication</start-class>-->
-        <start-class>temperature.TemperatureApplication</start-class>
     </properties>
 
     <dependencies>
@@ -101,30 +98,10 @@
     <build>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-
-<!--                <configuration>-->
-<!--                    <includes>-->
-<!--                        <include>src/main/java/**/*.java</include>-->
-<!--                        <include>src/main/kotlin/**/*.tk</include>-->
-<!--                    </includes>-->
-<!--                </configuration>-->
-
-<!--                <configuration>-->
-<!--                    <mainClass>temperature.TemperatureApplication</mainClass>-->
-<!--                    <layout>WAR</layout>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>repackage</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
@@ -165,93 +142,8 @@
                             </sourceDirs>
                         </configuration>
                     </execution>
-
-
-<!--                    <execution>-->
-<!--                        <id>default-compile</id>-->
-<!--                        <phase>none</phase>-->
-<!--                    </execution>-->
-<!--                    &lt;!&ndash; Replacing default-testCompile as it is treated specially by maven &ndash;&gt;-->
-<!--                    <execution>-->
-<!--                        <id>default-testCompile</id>-->
-<!--                        <phase>none</phase>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>java-compile</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>compile</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <configuration>-->
-<!--                            <mainClass>temperature.TemperatureApplication</mainClass>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
                 </executions>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--                <version>3.5.1</version>-->
-
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>default-compile</id>-->
-<!--                        <phase>none</phase>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>default-testCompile</id>-->
-<!--                        <phase>none</phase>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>java-compile</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>compile</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <includes>-->
-<!--                                <include>src/main/java/**/*.java</include>-->
-<!--&lt;!&ndash;                                <include>src/main/kotlin/**/*.tk</include>&ndash;&gt;-->
-<!--                            </includes>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>java-test-compile</id>-->
-<!--                        <phase>test-compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>testCompile</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-
-
-<!--&lt;!&ndash;                    &lt;!&ndash; Replacing default-compile as it is treated specially by maven &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                    <execution>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <id>default-compile</id>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <phase>none</phase>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </execution>&ndash;&gt;-->
-<!--&lt;!&ndash;                    &lt;!&ndash; Replacing default-testCompile as it is treated specially by maven &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                    <execution>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <id>default-testCompile</id>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <phase>none</phase>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </execution>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <execution>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <id>java-compile</id>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <phase>compile</phase>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <goals>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <goal>compile</goal>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </goals>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </execution>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <execution>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <id>java-test-compile</id>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <phase>test-compile</phase>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <goals>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <goal>testCompile</goal>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </goals>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </execution>&ndash;&gt;-->
-<!--                </executions>-->
-<!--            </plugin>-->
         </plugins>
     </build>
 </project>
