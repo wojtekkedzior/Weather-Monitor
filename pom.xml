@@ -192,36 +192,36 @@
                 <configuration>
                     <includes>
                         <include>src/main/java/**/*.java</include>
-                        <include>src/main/kotlin/**/*.tk</include>
+<!--                        <include>src/main/kotlin/**/*.tk</include>-->
                     </includes>
                 </configuration>
 
-                <executions>
-                    <!-- Replacing default-compile as it is treated specially by maven -->
-                    <execution>
-                        <id>default-compile</id>
-                        <phase>none</phase>
-                    </execution>
-                    <!-- Replacing default-testCompile as it is treated specially by maven -->
-                    <execution>
-                        <id>default-testCompile</id>
-                        <phase>none</phase>
-                    </execution>
-                    <execution>
-                        <id>java-compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>java-test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
+<!--                <executions>-->
+<!--                    &lt;!&ndash; Replacing default-compile as it is treated specially by maven &ndash;&gt;-->
+<!--                    <execution>-->
+<!--                        <id>default-compile</id>-->
+<!--                        <phase>none</phase>-->
+<!--                    </execution>-->
+<!--                    &lt;!&ndash; Replacing default-testCompile as it is treated specially by maven &ndash;&gt;-->
+<!--                    <execution>-->
+<!--                        <id>default-testCompile</id>-->
+<!--                        <phase>none</phase>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>java-compile</id>-->
+<!--                        <phase>compile</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>compile</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>java-test-compile</id>-->
+<!--                        <phase>test-compile</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>testCompile</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
             </plugin>
         </plugins>
     </build>
